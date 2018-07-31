@@ -2,31 +2,42 @@
     width: 60%;
     margin-left: auto;
     margin-right: auto;
+    white-space: nowrap;
 }
 h2{
     text-align: center;
 }
 #ul {
     list-style-type: decimal;
+    margin-left: auto;
+    margin-right: auto;
+    white-space: normal;
 }
 li {
-    margin-left: -25px;
+    font-size: 16pt;
+    font-family: Arial;
+    margin-left: -16px;
+    padding: 5px;
+    
 }
 #in {
     padding: 10px;
-    min-width: 60%;
+    min-width: 75%;
 }
 #addBtn {
-    overflow: hidden; 
-    text-overflow: ellipsis;
-    position: absolute;
-    white-space: nowrap;
     padding: 10px;
-    width: 20%;
+    width: 25%;
     background: #d9d9d9;
     color: #555;
     text-align: center;
     font-size: 16px;
     cursor: pointer;
     border-radius: 0;
+    font-family: Arial;
+}
+.closeBtn
+{
+    float: right;
+    font-size: 16pt;
+    cursor: pointer;
 }
