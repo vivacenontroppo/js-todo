@@ -1,0 +1,23 @@
+p
+{
+    font-family:  Verdana;
+    font-size: 20px;
+}
+p.mniejsza
+{
+    font-family:  Verdana;
+    font-size: 10px; 
+}
+p.mniejsza
+{
+    font-family:  Verdana;
+    font-size: 15px; line-height:14px;
+    color: red;
+    font-style: italic;
+}
+#containter
+{
+    height: 256px;
+    width: 256px;
+    background-image: url("http://icons.iconarchive.com/icons/iconsmind/outline/256/Timer-2-icon.png")
+}
