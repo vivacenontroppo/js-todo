@@ -15,4 +15,4 @@ inputElement.addEventListener('keydown', function(event){
     }
 });
 
-spanElement.addEventListener('click', newTask)
+spanElement.addEventListener('click', newTask);
