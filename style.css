@@ -1,23 +1,32 @@
-p
-{
-    font-family:  Verdana;
-    font-size: 20px;
+.containter{
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
 }
-p.mniejsza
-{
-    font-family:  Verdana;
-    font-size: 10px; 
+h2{
+    text-align: center;
 }
-p.mniejsza
-{
-    font-family:  Verdana;
-    font-size: 15px; line-height:14px;
-    color: red;
-    font-style: italic;
+#ul {
+    list-style-type: decimal;
 }
-#containter
-{
-    height: 256px;
-    width: 256px;
-    background-image: url("http://icons.iconarchive.com/icons/iconsmind/outline/256/Timer-2-icon.png")
+li {
+    margin-left: -25px;
+}
+#in {
+    padding: 10px;
+    min-width: 60%;
+}
+#addBtn {
+    overflow: hidden; 
+    text-overflow: ellipsis;
+    position: absolute;
+    white-space: nowrap;
+    padding: 10px;
+    width: 20%;
+    background: #d9d9d9;
+    color: #555;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 0;
 }
