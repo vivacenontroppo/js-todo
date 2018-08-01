@@ -6,16 +6,14 @@ const closeBtn = document.getElementsByClassName('closeBtn');
 
 // prepare getting and setting data:
 const data = JSON.parse(localStorage.getItem('items'));
-let itemsArray = data ? data : [];
-const setData = () => {localStorage.setItem('items', JSON.stringify(itemsArray))};
-const getData = () => data ? data.forEach(item => {
-    newTask(item);
-  }) : [];
+let dataArray = data ? data : [];
+const setData = () => localStorage.setItem('items', JSON.stringify(dataArray));
+const getData = () => data ? data.forEach(item => {newTask(item)}) : [];
 
 // push input to localStorage, create new li element, clear input:
 const newTask = (text) => {
     if (text) {
-    inputElement.value ? itemsArray.push(inputElement.value) : [];
+    inputElement.value ? dataArray.push(inputElement.value) : [];
     setData();
     const addLi = document.createElement('li');    
     addLi.textContent = text;
@@ -29,13 +27,14 @@ const newTask = (text) => {
     addDelSpan.appendChild(addx);
     addLi.appendChild(addDelSpan);
 
-//removes element from ul and localStorage after clicking 'x':
+//removes li and set new localStorage after clicking 'x':
     let i;
     for (i = 0; i < closeBtn.length; i++) {
         closeBtn[i].onclick = function() {
-        const parentLi = this.parentElement;
-        parentLi.style.display = "none";
-        console.log(parentLi)
+            parentText = this.parentElement.textContent.slice(0, -1);
+            dataArray = dataArray.filter(e => e !== parentText);
+            this.parentElement.style.display = "none";
+            setData();
         }};
     };
 };
@@ -49,6 +48,4 @@ inputElement.addEventListener('keydown', (event) => {
     };
 });
 
-btnElement.addEventListener('click', (event) => {
-    newTask(inputElement.value);
-});
+btnElement.addEventListener('click', (event) => newTask(inputElement.value))
