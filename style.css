@@ -22,17 +22,19 @@ li {
 }
 #in {
     padding: 10px;
-    min-width: 75%;
+    width: 75%;
 }
 #addBtn {
-    padding: 10px;
     width: 25%;
+    padding: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
     background: #d9d9d9;
     color: #555;
     text-align: center;
     font-size: 16px;
     cursor: pointer;
-    border-radius: 0;
+    border: none;
     font-family: Arial;
 }
 .closeBtn
