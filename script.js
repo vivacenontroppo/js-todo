@@ -41,12 +41,17 @@ const newTask = (text) => {
 
 getData();
 
+
+//listens for click on li and checks it:
+ulElement.addEventListener('click', (event) =>
+    (event.target.tagName === 'LI') ? event.target.classList.toggle('checked') : []);
+
 //listens for enter or click on addBtn and triggers newTask:
-inputElement.addEventListener('keyup', (event) => {
-    event.keyCode == 13 ? newTask(inputElement.value) : []
-    }
-);
-btnElement.addEventListener('click', (event) => newTask(inputElement.value));
+inputElement.addEventListener('keyup', (event) =>
+    event.keyCode == 13 ? newTask(inputElement.value) : []);
+
+btnElement.addEventListener('click', (event) =>
+    newTask(inputElement.value));
 
 //cleart storage and loop while removing li:
 clearBtn.addEventListener('click', (event) => {
