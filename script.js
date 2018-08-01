@@ -20,7 +20,7 @@ const newTask = (text) => {
     ulElement.appendChild(addLi);
     inputElement.value = "";
 
-//add 'x' to every list element:
+//add 'x' and checkbox to every list element:
     const addDelSpan = document.createElement('SPAN');
     const addx = document.createTextNode("x");
     addDelSpan.className = "closeBtn";

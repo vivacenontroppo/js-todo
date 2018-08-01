@@ -46,6 +46,11 @@ li {
     cursor: pointer;
     font-family: Helvetica;
 }
+.check{
+        float: right;
+        cursor: pointer;
+        float: left;
+}
 #clearBtn {
     width: 25%;
     padding: 5px;
