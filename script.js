@@ -1,16 +1,16 @@
-// variables for finding DOM elements:
+//variables for finding DOM elements:
 const inputElement = document.getElementById('in');
 const btnElement = document.getElementById('addBtn');
 const ulElement = document.getElementById('ul');
 const closeBtn = document.getElementsByClassName('closeBtn');
 
-// prepare getting and setting data:
+//prepare getting and setting data:
 const data = JSON.parse(localStorage.getItem('items'));
 let dataArray = data ? data : [];
 const setData = () => localStorage.setItem('items', JSON.stringify(dataArray));
 const getData = () => data ? data.forEach(item => {newTask(item)}) : [];
 
-// push input to localStorage, create new li element, clear input:
+//push input to localStorage, create new li element, clear input:
 const newTask = (text) => {
     if (text) {
     inputElement.value ? dataArray.push(inputElement.value) : [];
@@ -20,7 +20,7 @@ const newTask = (text) => {
     ulElement.appendChild(addLi);
     inputElement.value = "";
 
-// add 'x' to every list element:
+//add 'x' to every list element:
     const addDelSpan = document.createElement('SPAN');
     const addx = document.createTextNode("x");
     addDelSpan.className = "closeBtn";
@@ -35,17 +35,23 @@ const newTask = (text) => {
             dataArray = dataArray.filter(e => e !== parentText);
             this.parentElement.style.display = "none";
             setData();
-        }};
-    };
+        }}
+    }
 };
 
 getData();
 
-// listens for enter or click on addBtn and triggers newTask:
-inputElement.addEventListener('keydown', (event) => {
-    if (event.keyCode == 13) {
-        newTask(inputElement.value)
-    };
-});
+//listens for enter or click on addBtn and triggers newTask:
+inputElement.addEventListener('keyup', (event) => {
+    event.keyCode == 13 ? newTask(inputElement.value) : []
+    }
+);
+btnElement.addEventListener('click', (event) => newTask(inputElement.value));
 
-btnElement.addEventListener('click', (event) => newTask(inputElement.value))
+//cleart storage and loop while removing li:
+clearBtn.addEventListener('click', (event) => {
+    localStorage.clear();
+    while (ulElement.firstChild) {
+        ulElement.removeChild(ulElement.firstChild)
+    }
+});
