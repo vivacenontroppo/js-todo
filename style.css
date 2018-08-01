@@ -5,20 +5,20 @@
     white-space: nowrap;
 }
 h2{
-    text-align: center;
+    margin-left: auto;
+    font-family: Helvetica;
 }
 #ul {
     list-style-type: decimal;
     margin-left: auto;
     margin-right: auto;
     white-space: normal;
+    font-family: Helvetica;
 }
 li {
     font-size: 16pt;
-    font-family: Arial;
     margin-left: -16px;
     padding: 5px;
-    
 }
 #in {
     padding: 10px;
@@ -29,17 +29,35 @@ li {
     padding: 10px;
     overflow: hidden;
     text-overflow: ellipsis;
+    border-radius: 8px;
     background: #d9d9d9;
-    color: #555;
+    background-color: #6E31CC;
+    color: #d9d9d9;
     text-align: center;
     font-size: 16px;
     cursor: pointer;
     border: none;
-    font-family: Arial;
+    font-family: Helvetica;
 }
 .closeBtn
 {
     float: right;
     font-size: 16pt;
     cursor: pointer;
+    font-family: Helvetica;
+}
+#clearBtn {
+    width: 25%;
+    padding: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border-radius: 8px;
+    background: #d9d9d9;
+    background-color: rgb(138, 21, 21);
+    color: #d9d9d9;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    font-family: Helvetica;
 }
