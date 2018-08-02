@@ -1,9 +1,7 @@
 .containter{
     max-width: 800px;
     margin: 0 auto;
-    padding: 0 5%; 
-    margin-left: auto;
-    margin-right: auto;
+    padding: 0 5%;
     white-space: nowrap;
 }
 h2{
@@ -19,7 +17,7 @@ ul {
 }
 li {
     font-size: 16pt;
-    margin-left: -14px;
+    margin-left: -15px;
     padding: 5px;
     cursor: pointer;
     -webkit-user-select: none;
@@ -30,7 +28,6 @@ li {
 li:hover {
     background: #ddd;
 }
-/* When clicked on, add a background color and strike out text */
 ul li.checked {
     color: rgb(185, 199, 184);
     text-decoration: line-through;

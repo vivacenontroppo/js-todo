@@ -26,25 +26,22 @@ const newTask = (text) => {
     addDelSpan.className = "closeBtn";
     addDelSpan.appendChild(addx);
     addLi.appendChild(addDelSpan);
-
-//removes li and set new localStorage after clicking 'x':
-    let i;
-    for (i = 0; i < closeBtn.length; i++) {
-        closeBtn[i].onclick = function() {
-            parentText = this.parentElement.textContent.slice(0, -1);
-            dataArray = dataArray.filter(e => e !== parentText);
-            this.parentElement.style.display = "none";
-            setData();
-        }}
     }
 };
 
 getData();
 
-
-//listens for click on li and checks it:
-ulElement.addEventListener('click', (event) =>
-    (event.target.tagName === 'LI') ? event.target.classList.toggle('checked') : []);
+//listens for click on li and add line-through or remove:
+ulElement.addEventListener('click', (event) => {
+    if (event.target.tagName === 'LI') {
+        event.target.classList.toggle('checked')
+    } else if (event.target.className === 'closeBtn') {
+        parentText = event.target.parentElement.textContent.slice(0, -1);
+        dataArray = dataArray.filter(e => e !== parentText);
+        event.target.parentElement.style.display = "none";
+        setData();
+    }
+});
 
 //listens for enter or click on addBtn and triggers newTask:
 inputElement.addEventListener('keyup', (event) =>
