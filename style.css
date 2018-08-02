@@ -26,7 +26,7 @@ li {
     user-select: none;
 }
 li:hover {
-    background: #ddd;
+    background: rgba(111, 49, 204, 0.055);
 }
 ul li.checked {
     color: rgb(185, 199, 184);
