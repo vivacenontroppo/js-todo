@@ -2,8 +2,9 @@
   "name": "js-todo",
   "version": "1.0.0",
   "description": "JS based to-do list",
-  "main": "main.js",
+  "main": "src/main.js",
   "scripts": {
+    "start": "localhost 'src'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
