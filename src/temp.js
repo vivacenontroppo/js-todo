@@ -74,3 +74,4 @@ newTaskButton.addEventListener('click', (event) =>
             setToLocal();
         }
     });
+    

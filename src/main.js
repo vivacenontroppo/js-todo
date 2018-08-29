@@ -22,3 +22,4 @@ taskList.addEventListener('click', (event) => {
             setToLocal();
         }
     });
+    
