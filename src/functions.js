@@ -4,13 +4,11 @@ import { taskList, localStorageItems } from '/elements.js';
 let itemsArray = []
 
 function newTask(title, isChecked) {
-        debugger
         itemsArray.push(new Task(title, isChecked));
         setOnList(title, isChecked);
 };
 
 function setOnList(title, isChecked) {
-    debugger
     const li = document.createElement('li');
     li.textContent = title
     taskList.appendChild(li);
@@ -24,12 +22,10 @@ function setOnList(title, isChecked) {
 };
 
 function setToLocal() {
-    debugger
         localStorage.setItem('items', JSON.stringify(itemsArray));
 };
 
 function useLocalItems() {
-    debugger
     localStorageItems ? localStorageItems.forEach(item => {
         newTask(item.title, item.isChecked)
     }) : [];
@@ -43,8 +39,7 @@ function removeByTitle(params) {
 };
 
 function checkByTitle(params) {
-    itemsArray.some(function(item, index) {
-        debugger
+    itemsArray.some(function(item, index) {      
       return (itemsArray[index][params.key] === params.value) ? item.check() : false;
     });
     return itemsArray;
