@@ -1,45 +1,49 @@
 import { Task } from '/task.class.js';
-import { taskList, taskInput } from '/elements.js';
+import { taskList, localStorageItems } from '/elements.js';
 
-function newTask(title, priority) {
+let itemsArray = []
+
+function newTask(title) {
     if (title) {
-        setOnList(new Task (title, priority));
-        setToLocal(new Task (title, priority));
+        itemsArray.push(new Task(title));
+        setOnList(title);
     }
 };
 
-function setOnList(taskItem){
+function setOnList(title) {
     let li = document.createElement('li');
-    li.textContent = taskItem.title;
+    li.textContent = title
     taskList.appendChild(li);
-    taskInput.value = "";
     const xButton = document.createElement('SPAN');
     xButton.className = "xButton";
     xButton.appendChild(document.createTextNode("x"));
     li.appendChild(xButton);
 };
 
-function setToLocal(taskItem) {
-    if(taskItem) {
-        itemsArray.push(taskItem);
+function setToLocal() {
         localStorage.setItem('items', JSON.stringify(itemsArray));
-    } else {
-        localStorage.setItem('items', JSON.stringify(itemsArray));
-    }
 };
 
-function useLocalItems(){
-    localItems ? localItems.forEach( item => { setOnList(item) }) : [];
-}
+function useLocalItems() {
+    localStorageItems ? localStorageItems.forEach( item => {
+        newTask(item.title)
+    }) : [];
+};
 
-const localItems = JSON.parse(localStorage.getItem('items'));
-let itemsArray = localItems ? localItems : [];
-
-function removeByTitle(params){
+function removeByTitle(params) {
+    debugger;
     itemsArray.some(function(item, index) {
       return (itemsArray[index][params.key] === params.value) ? !!(itemsArray.splice(index, 1)) : false;
     });
     return itemsArray;
-  }
+};
 
-export { newTask, useLocalItems, removeByTitle, setToLocal };
+function checkByTitle(params) {
+    itemsArray.some(function(item, index) {
+      debugger;
+      return (itemsArray[index][params.key] === params.value) ? item.check() : false;
+    });
+    return itemsArray;
+};
+
+export { newTask, useLocalItems, removeByTitle, setToLocal, checkByTitle, setOnList };

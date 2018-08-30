@@ -46,11 +46,11 @@ newTaskButton.addEventListener('click', (event) =>
         xButton.appendChild(document.createTextNode("x"));
         li.appendChild(xButton);
     };
-    const localItems = JSON.parse(localStorage.getItem('items'));
-    let itemsArray = localItems ? localItems : [];
+    const localStorageItems = JSON.parse(localStorage.getItem('items'));
+    let itemsArray = localStorageItems ? localStorageItems : [];
     
     const useLocalItems = () => {
-        localItems ? localItems.forEach( item => { setOnList(item) }) : [];
+        localStorageItems ? localStorageItems.forEach( item => { setOnList(item) }) : [];
     }
     useLocalItems();
 
@@ -61,17 +61,33 @@ newTaskButton.addEventListener('click', (event) =>
         return array;
       }
 
-    taskList.addEventListener('click', (event) => {
-        if (event.target.tagName === 'LI') {
-            console.log('click na listę')
-        } else if (event.target.className === 'xButton') {
-            let parentText = event.target.parentElement.textContent.slice(0, -1);
-            event.target.parentElement.style.display = "none";
-            removeByTitle(itemsArray, {
-                key: 'title',
-                value: parentText
-              });
-            setToLocal();
-        }
-    });
-    
+      function checkByTitle(params){
+        itemsArray.some(function(item, index) {
+          return (itemsArray[index][params.key] === params.value) ? item.check() : false;
+        });
+        return itemsArray;
+      }
+
+      function dupa(item) {
+        debugger;
+        console.log('ELO', item)
+        item.check()
+      }
+
+      taskList.addEventListener('click', (event) => {
+            if (event.target.tagName === 'LI') {
+                let parentText = event.target.parentElement.textContent.slice(0, -1);
+                checkByTitle({
+                    key: 'title',
+                    value: parentText
+                })
+            } else if (event.target.className === 'xButton') {
+                let parentText = event.target.parentElement.textContent.slice(0, -1);
+                event.target.parentElement.style.display = "none";
+                    removeByTitle({
+                        key: 'title',
+                        value: parentText
+                    });
+                setToLocal();
+            }
+        });
