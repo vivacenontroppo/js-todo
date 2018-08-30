@@ -62,6 +62,8 @@ ul li.checked {
     font-size: 16pt;
     cursor: pointer;
     font-family: Helvetica;
+    border: none;
+    background-color: transparent;
 }
 #clearBtn {
     width: 25%;

@@ -14,11 +14,11 @@ function setOnList(title, isChecked) {
     const li = document.createElement('li');
     li.textContent = title
     taskList.appendChild(li);
-    const xButton = document.createElement('SPAN');
+    const xButton = document.createElement('button');
     xButton.className = "xButton";
     xButton.appendChild(document.createTextNode("x"));
     li.appendChild(xButton);
-    if(isChecked == true) {
+    if(isChecked === true) {
         li.classList.toggle('checked')
     }
 };

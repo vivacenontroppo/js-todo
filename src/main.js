@@ -23,6 +23,7 @@ taskList.addEventListener('click', (event) => {
             key: 'title',
             value: event.target.textContent.slice(0, -1)
         })
+        event.target.classList.toggle('checked')
     } else if (event.target.className === 'xButton') {
         removeByTitle({
             key: 'title',
