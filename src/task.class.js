@@ -1,11 +1,11 @@
 class Task{
-    constructor(title) {
+    constructor(title, isChecked) {
         this.title = title;
         this.priority = 0;
-        this.isChecked = false;
+        this.isChecked = isChecked
     }
     check(){
-        this.isChecked = true
+        this.isChecked = !this.isChecked
     }
 };
 

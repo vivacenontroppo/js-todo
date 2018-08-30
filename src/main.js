@@ -29,8 +29,8 @@ taskList.addEventListener('click', (event) => {
             value: event.target.parentElement.textContent.slice(0, -1)
             });
         event.target.parentElement.style.display = "none";
-        setToLocal();
     }
+    setToLocal();
 });
 
 clearBtn.addEventListener('click', (event) => {

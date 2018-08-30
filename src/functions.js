@@ -3,35 +3,39 @@ import { taskList, localStorageItems } from '/elements.js';
 
 let itemsArray = []
 
-function newTask(title) {
-    if (title) {
-        itemsArray.push(new Task(title));
-        setOnList(title);
-    }
+function newTask(title, isChecked) {
+        debugger
+        itemsArray.push(new Task(title, isChecked));
+        setOnList(title, isChecked);
 };
 
-function setOnList(title) {
-    let li = document.createElement('li');
+function setOnList(title, isChecked) {
+    debugger
+    const li = document.createElement('li');
     li.textContent = title
     taskList.appendChild(li);
     const xButton = document.createElement('SPAN');
     xButton.className = "xButton";
     xButton.appendChild(document.createTextNode("x"));
     li.appendChild(xButton);
+    if(isChecked == true) {
+        li.classList.toggle('checked')
+    }
 };
 
 function setToLocal() {
+    debugger
         localStorage.setItem('items', JSON.stringify(itemsArray));
 };
 
 function useLocalItems() {
-    localStorageItems ? localStorageItems.forEach( item => {
-        newTask(item.title)
+    debugger
+    localStorageItems ? localStorageItems.forEach(item => {
+        newTask(item.title, item.isChecked)
     }) : [];
 };
 
 function removeByTitle(params) {
-    debugger;
     itemsArray.some(function(item, index) {
       return (itemsArray[index][params.key] === params.value) ? !!(itemsArray.splice(index, 1)) : false;
     });
@@ -40,7 +44,7 @@ function removeByTitle(params) {
 
 function checkByTitle(params) {
     itemsArray.some(function(item, index) {
-      debugger;
+        debugger
       return (itemsArray[index][params.key] === params.value) ? item.check() : false;
     });
     return itemsArray;
