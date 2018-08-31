@@ -1,11 +1,9 @@
 import { Task } from '/task.class.js';
-import { taskList, localStorageItems } from '/elements.js';
-
-let itemsArray = []
+import { taskList, localStorageItems, taskArray } from '/elements.js';
 
 function newTask(title, isChecked) {
-        itemsArray.push(new Task(title, isChecked));
-        setOnList(title, isChecked);
+    taskArray.push(new Task(title, isChecked));
+    setOnList(title, isChecked);
 };
 
 function setOnList(title, isChecked) {
@@ -22,7 +20,7 @@ function setOnList(title, isChecked) {
 };
 
 function setToLocal() {
-        localStorage.setItem('items', JSON.stringify(itemsArray));
+    localStorage.setItem('items', JSON.stringify(taskArray));
 };
 
 function useLocalItems() {
@@ -32,17 +30,17 @@ function useLocalItems() {
 };
 
 function removeByTitle(params) {
-    itemsArray.some(function(item, index) {
-      return (itemsArray[index][params.key] === params.value) ? !!(itemsArray.splice(index, 1)) : false;
+    taskArray.some(function(item, index) {
+      return (taskArray[index][params.key] === params.value) ? !!(taskArray.splice(index, 1)) : false;
     });
-    return itemsArray;
+    return taskArray;
 };
 
 function checkByTitle(params) {
-    itemsArray.some(function(item, index) {      
-      return (itemsArray[index][params.key] === params.value) ? item.check() : false;
+    taskArray.some(function(item, index) {      
+      return (taskArray[index][params.key] === params.value) ? item.check() : false;
     });
-    return itemsArray;
+    return taskArray;
 };
 
 export { newTask, useLocalItems, removeByTitle, setToLocal, checkByTitle, setOnList };

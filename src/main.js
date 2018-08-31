@@ -34,7 +34,7 @@ taskList.addEventListener('click', (event) => {
     setToLocal();
 });
 
-clearBtn.addEventListener('click', (event) => {
+clearButton.addEventListener('click', (event) => {
     localStorage.clear();
     while (taskList.firstChild) {
         taskList.removeChild(taskList.firstChild)
