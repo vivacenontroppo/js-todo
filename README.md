@@ -7,3 +7,5 @@ If you were not invited here, please leave.
 npm install
 
 npm start (for localhost:8080)
+
+https://www.npmjs.com/package/localhost
