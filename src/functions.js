@@ -16,7 +16,7 @@ function setOnList(title, isChecked) {
     li.appendChild(xButton);
     if(isChecked === true) {
         li.classList.toggle('checked')
-    }
+    };
 };
 
 function setToLocal() {
@@ -48,9 +48,9 @@ function clearAll() {
         while (taskList.firstChild) {
             taskList.removeChild(taskList.firstChild)
         }
-        while(taskArray.length > 0) {
+        while (taskArray.length > 0) {
             taskArray.pop();
-        }
+        };
 };
 
 export { newTask, useLocalItems, removeByTitle, setToLocal, checkByTitle, setOnList, clearAll };
