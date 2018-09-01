@@ -1,4 +1,4 @@
-import { newTask, useLocalItems, removeByTitle, setToLocal, checkByTitle, setOnList } from '/functions.js';
+import { newTask, useLocalItems, removeByTitle, setToLocal, checkByTitle, clearAll } from '/functions.js';
 import { taskInput, newTaskButton, taskList } from '/elements.js';
 
 useLocalItems();
@@ -34,10 +34,5 @@ taskList.addEventListener('click', (event) => {
     setToLocal();
 });
 
-clearButton.addEventListener('click', (event) => {
-    localStorage.clear();
-    while (taskList.firstChild) {
-        taskList.removeChild(taskList.firstChild)
-    }
-});
+clearButton.addEventListener('click', (event) => clearAll());
     

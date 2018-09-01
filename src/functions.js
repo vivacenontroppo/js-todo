@@ -43,4 +43,14 @@ function checkByTitle(params) {
     return taskArray;
 };
 
-export { newTask, useLocalItems, removeByTitle, setToLocal, checkByTitle, setOnList };
+function clearAll() {
+        localStorage.clear();
+        while (taskList.firstChild) {
+            taskList.removeChild(taskList.firstChild)
+        }
+        while(taskArray.length > 0) {
+            taskArray.pop();
+        }
+};
+
+export { newTask, useLocalItems, removeByTitle, setToLocal, checkByTitle, setOnList, clearAll };
