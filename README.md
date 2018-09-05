@@ -8,4 +8,6 @@ npm install
 
 npm start (for localhost:8080)
 
+npm test (for e2e tests)
+
 https://www.npmjs.com/package/localhost
