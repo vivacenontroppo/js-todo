@@ -36,6 +36,9 @@ var BasePage = /** @class */ (function () {
             expect(text).toContain(liValue);
         });
     };
+    BasePage.prototype.deleteTask = function (liIndex) {
+        protractor_1.element(protractor_1.by.xpath("//ul[@id='ul']//li[" + liIndex + "]//button")).click();
+    };
     return BasePage;
 }());
 exports.BasePage = BasePage;

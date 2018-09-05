@@ -40,4 +40,8 @@ export class BasePage {
             expect(text).toContain(liValue);
         });
     }
+
+    deleteTask(liIndex) {
+        element(by.xpath(`//ul[@id='ul']//li[${liIndex}]//button`)).click()
+    }
 };
