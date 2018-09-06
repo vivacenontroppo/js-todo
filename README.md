@@ -10,4 +10,4 @@ npm start (for localhost:8080)
 
 npm test (for e2e tests)
 
-https://www.npmjs.com/package/localhost
+localhost package: https://www.npmjs.com/package/localhost
