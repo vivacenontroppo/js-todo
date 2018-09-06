@@ -1,5 +1,5 @@
 import { BasePage } from "./basePage.po";
-import { browser, element, by } from "protractor";
+import { browser } from "protractor";
 
 describe("test", () => {
     const basePage = new BasePage();
@@ -23,11 +23,6 @@ describe("test", () => {
             basePage.writeTask(task);
             basePage.clickEnter();
         })
-
-        for (let i = 0; i < exampleTasks.length; i++) {
-            basePage.writeTask(exampleTasks[i]);
-            basePage.clickEnter();
-        }
     });
 
     it("check tasks on list", () => {
@@ -37,12 +32,11 @@ describe("test", () => {
         }
     })
 
-    it("should delete all the task", () => {
+    it("should delete all the task and check if they are gone", () => {
 
         for (let i = 1; i < exampleTasks.length + 1; i++) {
             basePage.deleteTask(i)
         }
-
         basePage.ul.getText().then(text => expect(text).toBeFalsy())
     })
 });

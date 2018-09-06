@@ -21,13 +21,13 @@ export class TasksList {
                 this.taskInput.value = "";
             }
         });
-        
+
         this.newTaskButton.addEventListener('click', (event) => {
             this.newTask(this.taskInput.value);
             this.setToLocal();
             this.taskInput.value = "";
         });
-        
+
         this.taskList.addEventListener('click', (event) => {
             if (event.target.tagName === 'LI') {
                 this.checkByTitle('title', event.target.textContent.slice(0, -1))
@@ -38,7 +38,7 @@ export class TasksList {
             }
             this.setToLocal();
         });
-        
+
         this.clearButton.addEventListener('click', _ => this.clearAll());
     }
 
@@ -46,7 +46,7 @@ export class TasksList {
         this.taskArray.push(new Task(title, isChecked));
         this.setOnList(title, isChecked);
     }
-    
+
     setOnList(title, isChecked) {
         const li = document.createElement('li');
         li.textContent = title
@@ -55,40 +55,40 @@ export class TasksList {
         xButton.className = "xButton";
         xButton.appendChild(document.createTextNode("x"));
         li.appendChild(xButton);
-        if(isChecked === true) {
+        if (isChecked === true) {
             li.classList.toggle('checked')
         };
     }
-    
+
     setToLocal() {
         localStorage.setItem('items', JSON.stringify(this.taskArray));
     }
-    
+
     useLocalItems() {
         this.localStorageItems ? this.localStorageItems.forEach(item => {
             this.newTask(item.title, item.isChecked)
         }) : [];
     }
-    
+
     removeByTitle(key, value) {
         this.taskArray
             .filter(task => task[key] === value)
             .forEach(task => this.taskArray.splice((this.taskArray.indexOf(task))), 1)
     }
-    
+
     checkByTitle(key, value) {
         this.taskArray
             .filter(task => task[key] === value)
             .forEach(task => task.check())
     }
-    
+
     clearAll() {
-            localStorage.clear();
-            while (this.taskList.firstChild) {
-                this.taskList.removeChild(taskList.firstChild)
-            }
-            while (taskArray.length > 0) {
-                this.taskArray.pop();
-            };
+        localStorage.clear();
+        while (this.taskList.firstChild) {
+            this.taskList.removeChild(taskList.firstChild)
+        }
+        while (taskArray.length > 0) {
+            this.taskArray.pop();
+        };
     }
 };
