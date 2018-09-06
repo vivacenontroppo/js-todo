@@ -1,48 +1,41 @@
-import { browser, element, by, protractor } from "protractor";
+import { browser, element, by, protractor, promise } from 'protractor';
 
 export class BasePage {
-    heading = element(by.xpath("//div[1]/h2[1]"));
-    input = element(by.xpath("//input[1]"));
-    addButton = element(by.xpath("//button[@id='addBtn']"));
-    ul = element(by.xpath(`//ul`))
+    public heading = element(by.xpath('//div[1]/h2[1]'));
+    public input = element(by.xpath('//input[1]'));
+    public addButton = element(by.xpath('//button[@id=\'addBtn\']'));
+    public ul = element(by.xpath(`//ul`));
 
-    openBrowser(url: string) {
-        browser.get(url);
+    public openBrowser = (url: string): promise.Promise<void> => browser.get(url);
+
+    public pause = (): promise.Promise<void> => {
+        const sec = 1000;
+
+        return browser.driver.sleep(sec);
     }
 
-    pause() {
-        browser.driver.sleep(1000);
-    }
-
-    checkHeading(title) {
+    public checkHeading = (title: string): promise.Promise<void> =>
         this.heading.getText().then(text => {
             expect(text).toBe(title);
         });
-    }
 
-    writeTask(task) {
-        this.input.sendKeys(task);
-    }
+    public writeTask = (task: string): promise.Promise<void> => this.input.sendKeys(task);
 
-    clickAdd() {
-        this.addButton.click();
-    }
+    public clickAdd = (): promise.Promise<void> => this.addButton.click();
 
-    clickEnter() {
+    public clickEnter = (): promise.Promise<void> =>
         browser
             .actions()
             .sendKeys(protractor.Key.ENTER)
             .perform();
+
+    public checkTaskList = (liIndex: number, liValue: string): promise.Promise<boolean> => {
+        const liElement = element(by.xpath(`//ul//li[${liIndex}]`));
+
+        return liElement.getText()
+            .then(text => expect(text).toContain(liValue));
     }
 
-    checkTaskList(liIndex, liValue) {
-        var liElement = element(by.xpath(`//ul//li[${liIndex}]`));
-        liElement.getText().then(text => {
-            expect(text).toContain(liValue);
-        });
-    }
-
-    deleteTask(liIndex) {
-        element(by.xpath(`//ul[@id='ul']//li[${liIndex}]//button`)).click()
-    }
-};
+    public deleteTask = (liIndex: number): promise.Promise<void> =>
+    element(by.xpath(`//ul[@id='ul']//li[${liIndex}]//button`)).click();
+}
