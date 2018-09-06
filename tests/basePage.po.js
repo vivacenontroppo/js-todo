@@ -6,6 +6,7 @@ var BasePage = /** @class */ (function () {
         this.heading = protractor_1.element(protractor_1.by.xpath("//div[1]/h2[1]"));
         this.input = protractor_1.element(protractor_1.by.xpath("//input[1]"));
         this.addButton = protractor_1.element(protractor_1.by.xpath("//button[@id='addBtn']"));
+        this.ul = protractor_1.element(protractor_1.by.xpath("//ul"));
     }
     BasePage.prototype.openBrowser = function (url) {
         protractor_1.browser.get(url);
@@ -13,9 +14,9 @@ var BasePage = /** @class */ (function () {
     BasePage.prototype.pause = function () {
         protractor_1.browser.driver.sleep(1000);
     };
-    BasePage.prototype.checkHeading = function () {
+    BasePage.prototype.checkHeading = function (title) {
         this.heading.getText().then(function (text) {
-            expect(text).toBe("To do list:");
+            expect(text).toBe(title);
         });
     };
     BasePage.prototype.writeTask = function (task) {

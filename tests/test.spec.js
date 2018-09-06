@@ -8,27 +8,33 @@ describe("test", function () {
     var exampleTasks = [
         "pierwsze przykładowe zadanie",
         "drugie przykładowe zadanie",
-        "trzecie przykładowe zadanie"
+        "trzecie przykładowe zadanie",
+        "dodajmy czwarty task"
     ];
     it("check the heading", function () {
         basePage.openBrowser("http://localhost:8808");
-        basePage.checkHeading();
+        basePage.checkHeading("To do list:");
     });
     it("add some tasks", function () {
-        basePage.writeTask(exampleTasks[0]);
-        basePage.input
-            .getAttribute("value")
-            .then(function (text) { return expect(text).toEqual("pierwsze przykładowe zadanie"); });
-        basePage.clickEnter();
-        basePage.writeTask(exampleTasks[1]);
-        basePage.clickEnter();
-        basePage.writeTask(exampleTasks[2]);
-        basePage.clickEnter();
+        exampleTasks.forEach(function (task) {
+            basePage.writeTask(task);
+            basePage.clickEnter();
+        });
+        for (var i = 0; i < exampleTasks.length; i++) {
+            basePage.writeTask(exampleTasks[i]);
+            basePage.clickEnter();
+        }
     });
     it("check tasks on list", function () {
-        basePage.checkTaskList(1, exampleTasks[0]);
-        basePage.checkTaskList(2, exampleTasks[1]);
-        basePage.checkTaskList(3, exampleTasks[2]);
+        for (var i = 0; i < exampleTasks.length; i++) {
+            basePage.checkTaskList(i + 1, exampleTasks[i]);
+        }
+    });
+    it("should delete all the task", function () {
+        for (var i = 1; i < exampleTasks.length + 1; i++) {
+            basePage.deleteTask(i);
+        }
+        basePage.ul.getText().then(function (text) { return expect(text).toBeFalsy(); });
     });
 });
 //# sourceMappingURL=test.spec.js.map

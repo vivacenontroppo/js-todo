@@ -1,5 +1,5 @@
 import { BasePage } from "./basePage.po";
-import { browser } from "protractor";
+import { browser, element, by } from "protractor";
 
 describe("test", () => {
     const basePage = new BasePage();
@@ -8,32 +8,41 @@ describe("test", () => {
     const exampleTasks = [
         "pierwsze przykładowe zadanie",
         "drugie przykładowe zadanie",
-        "trzecie przykładowe zadanie"
+        "trzecie przykładowe zadanie",
+        "dodajmy czwarty task"
     ];
 
     it("check the heading", () => {
         basePage.openBrowser("http://localhost:8808");
-        basePage.checkHeading();
+        basePage.checkHeading("To do list:");
     });
 
     it("add some tasks", () => {
-        basePage.writeTask(exampleTasks[0]);
-        basePage.input
-            .getAttribute("value")
-            .then(text => expect(text).toEqual("pierwsze przykładowe zadanie"));
-        basePage.clickEnter();
-        basePage.writeTask(exampleTasks[1]);
-        basePage.clickEnter();
-        basePage.writeTask(exampleTasks[2]);
-        basePage.clickEnter();
+
+        exampleTasks.forEach(task => {
+            basePage.writeTask(task);
+            basePage.clickEnter();
+        })
+
+        for (let i = 0; i < exampleTasks.length; i++) {
+            basePage.writeTask(exampleTasks[i]);
+            basePage.clickEnter();
+        }
     });
 
     it("check tasks on list", () => {
 
-        basePage.checkTaskList(1, exampleTasks[0])
-        basePage.checkTaskList(2, exampleTasks[1])
-        basePage.checkTaskList(3, exampleTasks[2])
-
+        for (let i = 0; i < exampleTasks.length; i++) {
+            basePage.checkTaskList(i + 1, exampleTasks[i]);
+        }
     })
 
+    it("should delete all the task", () => {
+
+        for (let i = 1; i < exampleTasks.length + 1; i++) {
+            basePage.deleteTask(i)
+        }
+
+        basePage.ul.getText().then(text => expect(text).toBeFalsy())
+    })
 });
