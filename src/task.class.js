@@ -4,7 +4,7 @@ export class Task {
         this.priority = 0;
         this.isChecked = isChecked
     }
-    check() {
+    toggleCheck() {
         this.isChecked = !this.isChecked
     }
 };

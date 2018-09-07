@@ -20,7 +20,7 @@ describe('test', () => {
     it('add some tasks', () => {
 
         exampleTasks.forEach(task => {
-            basePage.writeTask(task);
+            basePage.writeTask(task)
             basePage.clickEnter();
         });
     });
@@ -39,4 +39,6 @@ describe('test', () => {
         }
         basePage.ul.getText().then(text => expect(text).toBeFalsy());
     });
+
+    
 });
