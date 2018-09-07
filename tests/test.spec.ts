@@ -37,6 +37,6 @@ describe('test', () => {
         for (let i = 1; i < exampleTasks.length + 1; i++) {
             basePage.deleteTask(i);
         }
-        basePage.ul.getText().then(text => expect(text).toBeTruthy());
+        basePage.ul.getText().then(text => expect(text).toBeFalsy());
     });
 });
