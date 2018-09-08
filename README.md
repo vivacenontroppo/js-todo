@@ -4,10 +4,21 @@ Tutorial JavaScript to-do list.
 If you were not invited here, please leave.
 
 # node --version: min 4 or greater
-npm install
+<ul>
+<li>npm install
 
-npm start (for localhost:8080)
+<li>npm start -> for localhost:8880
 
-npm test (for e2e tests)
+<li>npm build -> build ES5 files in /lib folder
+  
+<li>npm run lint-fix -> use jslint with fix
+</ul>
 
-localhost package: https://www.npmjs.com/package/localhost
+<h4>testing:</h4>
+<ul>
+<li>tsc -> build js files from ts files
+
+<li>npm test -> perform e2e tests
+  
+(no need to run webriver-manager, selenium-standalone is being used when test start)
+</ul>
