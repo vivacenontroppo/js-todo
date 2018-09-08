@@ -1,6 +1,6 @@
 tests/*.js
 tests/*.js.map
-
+tests/screenshots
 tests/.DS_Store
 .DS_Store
 */*.DS_Store
