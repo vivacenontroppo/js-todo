@@ -34,7 +34,7 @@ export class TasksList {
                 event.target.classList.toggle('checked')
             } else if (event.target.className === 'xButton') {
                 this.removeByTitle('title', event.target.parentElement.textContent.slice(0, -1));
-                event.target.parentElement.style.display = "none";
+                event.target.parentElement.parentNode.removeChild(event.target.parentElement)
             }
             this.setToLocal();
         });
@@ -73,21 +73,24 @@ export class TasksList {
     removeByTitle(key, value) {
         this.taskArray
             .filter(task => task[key] === value)
-            .forEach(task => this.taskArray.splice((this.taskArray.indexOf(task))), 1)
+            .forEach(task => {
+                const indexOf = this.taskArray.indexOf(task);
+                this.taskArray.splice(indexOf, 1)
+            })
     }
 
     checkByTitle(key, value) {
         this.taskArray
             .filter(task => task[key] === value)
-            .forEach(task => task.check())
+            .forEach(task => task.toggleCheck())
     }
 
     clearAll() {
         localStorage.clear();
         while (this.taskList.firstChild) {
-            this.taskList.removeChild(taskList.firstChild)
+            this.taskList.removeChild(this.taskList.firstChild)
         }
-        while (taskArray.length > 0) {
+        while (this.taskArray.length > 0) {
             this.taskArray.pop();
         };
     }
