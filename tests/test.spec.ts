@@ -55,6 +55,7 @@ describe('test', () => {
 
     it('should click delete all, check if gone, refresh and check again', () => {
 
+        basePage.pause(3)
         basePage.clickClearAll();
         basePage.expextListToBeEmpty();
         basePage.refresh();

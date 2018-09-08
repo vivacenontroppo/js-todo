@@ -14,18 +14,22 @@ export class TasksList {
     initialize() {
         this.useLocalItems();
         this.taskInput.addEventListener('keyup', (event) => {
-            const enterKeyCode = 13
-            if (event.keyCode == enterKeyCode) {
-                this.newTask(this.taskInput.value);
-                this.setToLocal();
-                this.taskInput.value = "";
+            if (this.taskInput.value) {
+                const enterKeyCode = 13
+                if (event.keyCode == enterKeyCode) {
+                    this.newTask(this.taskInput.value);
+                    this.setToLocal();
+                    this.taskInput.value = '';
+                }
             }
         });
 
         this.newTaskButton.addEventListener('click', (event) => {
-            this.newTask(this.taskInput.value);
-            this.setToLocal();
-            this.taskInput.value = "";
+            if (this.taskInput.value) {
+                this.newTask(this.taskInput.value);
+                this.setToLocal();
+                this.taskInput.value = '';
+            }
         });
 
         this.taskList.addEventListener('click', (event) => {
