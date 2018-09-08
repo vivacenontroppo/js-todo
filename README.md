@@ -19,4 +19,6 @@ If you were not invited here, please leave.
 <li>tsc -> build js files from ts files
 
 <li>npm test -> perform e2e tests
+  
+(no need to run webriver-manager, selenium-standalone is being used when test start)
 </ul>
