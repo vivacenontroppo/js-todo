@@ -10,7 +10,7 @@ export let config: Config = {
       jasmine.getEnv().addReporter(
         new HtmlScreenshotReporter({
           dest: `tests/screenshots/${new Date()}`,
-          //filename: 'report.html',
+          filename: 'report.html',
           captureOnlyFailedSpecs: true
         })
       );
