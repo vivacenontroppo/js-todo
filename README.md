@@ -20,5 +20,3 @@ If you were not invited here, please leave.
 
 <li>npm test -> perform e2e tests
 </ul>
-
-localhost package: https://www.npmjs.com/package/localhost
