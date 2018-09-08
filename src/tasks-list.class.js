@@ -34,7 +34,7 @@ export class TasksList {
                 event.target.classList.toggle('checked')
             } else if (event.target.className === 'xButton') {
                 this.removeByTitle('title', event.target.parentElement.textContent.slice(0, -1));
-                event.target.parentElement.style.display = "none";
+                event.target.parentElement.parentNode.removeChild(event.target.parentElement)
             }
             this.setToLocal();
         });
