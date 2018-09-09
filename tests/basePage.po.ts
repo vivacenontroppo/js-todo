@@ -1,4 +1,4 @@
-import { browser, element, by, protractor, promise, Key } from 'protractor';
+import { browser, element, by, protractor, promise } from 'protractor';
 import * as fs from 'fs';
 
 export class BasePage {
