@@ -1,7 +1,7 @@
 export class Task {
-    constructor(title, isChecked) {
+    constructor(title, priority, isChecked) {
         this.title = title;
-        this.priority = 0;
+        this.priority = priority;
         this.isChecked = isChecked
     }
     toggleCheck() {

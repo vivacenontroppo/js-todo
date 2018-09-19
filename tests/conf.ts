@@ -19,9 +19,11 @@ export let config: Config = {
     showColors:true,
     defaultTimeoutInterval: 10000,
   },
-  multiCapabilities: [{
-    'browserName': 'firefox'
-  }, {
+  multiCapabilities:[
+  //   {
+  //   'browserName': 'firefox'
+  // },
+   {
     'browserName': 'chrome'
   }]
     // seleniumAddress: 'http://localhost:4444/wd/hub'
