@@ -17,10 +17,7 @@ export class TasksList {
         this.taskInput.addEventListener('keyup', (event) => {
             if (this.taskInput.value) {
                 const enterKeyCode = 13
-                if (event.keyCode == enterKeyCode && this.prioritySelected.value == "0") {
-                    alert('set priority first!')
-                }
-                else if (event.keyCode == enterKeyCode) {
+                if (event.keyCode == enterKeyCode) {
                     this.newTask(this.taskInput.value, this.prioritySelected.value);
                     this.setToLocal();
                     this.taskInput.value = '';
@@ -30,22 +27,18 @@ export class TasksList {
 
         this.newTaskButton.addEventListener('click', (event) => {
             if (this.taskInput.value) {
-                if (this.prioritySelected.value == 0) {
-                    alert('set priority first!')
-                } else {
-                    this.newTask(this.taskInput.value, this.prioritySelected.value);
-                    this.setToLocal();
-                    this.taskInput.value = '';
-                }
+                this.newTask(this.taskInput.value, this.prioritySelected.value);
+                this.setToLocal();
+                this.taskInput.value = '';
             }
         });
 
         this.taskList.addEventListener('click', (event) => {
             if (event.target.tagName === 'LI') {
-                this.checkByTitle('title', event.target.textContent.slice(0, -1))
+                this.checkByTitle('title', event.target.textContent.slice(2, -1))
                 event.target.classList.toggle('checked')
             } else if (event.target.className === 'xButton') {
-                this.removeByTitle('title', event.target.parentElement.textContent.slice(0, -1));
+                this.removeByTitle('title', event.target.parentElement.textContent.slice(2, -1));
                 event.target.parentElement.parentNode.removeChild(event.target.parentElement)
             }
             this.setToLocal();
