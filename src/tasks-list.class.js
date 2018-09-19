@@ -8,6 +8,7 @@ export class TasksList {
         this.newTaskButton = document.getElementById('addBtn');
         this.localStorageItems = JSON.parse(localStorage.getItem('items'));
         this.clearButton = document.getElementById('clearButton');
+        this.prioritySelected = document.getElementById('priority');
         this.taskArray = [];
     }
 
@@ -16,8 +17,11 @@ export class TasksList {
         this.taskInput.addEventListener('keyup', (event) => {
             if (this.taskInput.value) {
                 const enterKeyCode = 13
-                if (event.keyCode == enterKeyCode) {
-                    this.newTask(this.taskInput.value);
+                if (event.keyCode == enterKeyCode && this.prioritySelected.value == "0") {
+                    alert('set priority first!')
+                }
+                else if (event.keyCode == enterKeyCode) {
+                    this.newTask(this.taskInput.value, this.prioritySelected.value);
                     this.setToLocal();
                     this.taskInput.value = '';
                 }
@@ -26,9 +30,13 @@ export class TasksList {
 
         this.newTaskButton.addEventListener('click', (event) => {
             if (this.taskInput.value) {
-                this.newTask(this.taskInput.value);
-                this.setToLocal();
-                this.taskInput.value = '';
+                if (this.prioritySelected.value == 0) {
+                    alert('set priority first!')
+                } else {
+                    this.newTask(this.taskInput.value, this.prioritySelected.value);
+                    this.setToLocal();
+                    this.taskInput.value = '';
+                }
             }
         });
 
@@ -46,16 +54,23 @@ export class TasksList {
         this.clearButton.addEventListener('click', _ => this.clearAll());
     }
 
-    newTask(title, isChecked) {
-        this.taskArray.push(new Task(title, isChecked));
-        this.setOnList(title, isChecked);
+    newTask(title, priority, isChecked) {
+        this.taskArray.push(new Task(title, priority, isChecked));
+        this.setOnList(title, isChecked, priority);
     }
 
-    setOnList(title, isChecked) {
+    setOnList(title, isChecked, priority) {
+        switch (priority) {
+            case '5': this.prioritySwitchIcon = "♛ "; break;
+            case '4': this.prioritySwitchIcon = "♜ "; break;
+            case '3': this.prioritySwitchIcon = "♝ "; break;
+            case '2': this.prioritySwitchIcon = "♞ "; break;
+            case '1': this.prioritySwitchIcon = "♟ "; break;
+        }
         const li = document.createElement('li');
-        li.textContent = title
-        this.taskList.appendChild(li);
         const xButton = document.createElement('button');
+        li.textContent = this.prioritySwitchIcon + title
+        this.taskList.appendChild(li);
         xButton.className = "xButton";
         xButton.appendChild(document.createTextNode("x"));
         li.appendChild(xButton);
@@ -70,7 +85,7 @@ export class TasksList {
 
     useLocalItems() {
         this.localStorageItems ? this.localStorageItems.forEach(item => {
-            this.newTask(item.title, item.isChecked)
+            this.newTask(item.title, item.priority, item.isChecked)
         }) : [];
     }
 

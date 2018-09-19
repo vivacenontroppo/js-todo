@@ -60,13 +60,15 @@ export class BasePage {
     public expextListToBeEmpty = (): promise.Promise<boolean> =>
     this.list.getText().then(text => expect(text).toBeFalsy());
 
-    public writeScreenShot = (data, filename) => {
+    private writeScreenShot = (data, filename) => {
         const stream = fs.createWriteStream(filename);
         stream.write(new Buffer (data, 'base64'));
         stream.end();
       };
 
-    public takeScreenShot = (): promise.Promise<void> => browser.takeScreenshot().then(png => this.writeScreenShot(png, `./tests/screenshots/${this.currentDate}.png`));
+    public takeScreenShot = (): promise.Promise<void> =>
+        browser.takeScreenshot().then(png =>
+            this.writeScreenShot(png, `./tests/screenshots/${this.currentDate}.png`));
 
     public randomIndex = (max): number => Math.floor(Math.random() * Math.floor(max) + 1);
 

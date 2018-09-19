@@ -25,6 +25,11 @@ li {
     -ms-user-select: none;
     user-select: none;
 }
+li::first-letter { 
+    font-size: 26px;
+    margin-left: -7px;
+    
+}
 li:hover {
     background: rgba(111, 49, 204, 0.055);
 }
@@ -34,11 +39,11 @@ ul li.checked {
 }
 #in {
     padding: 10px;
-    width: 75%;
+    width: 67.5%;
     font-size: 10pt;
 }
 #addBtn {
-    width: 25%;
+    width: 20%;
     padding: 10px;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -55,6 +60,21 @@ ul li.checked {
 #addBtn:hover {
     background-color: rgb(133, 58, 245);
     transition-duration: 0.6s;
+}
+#priority {
+    width: 12.5%;
+    height: 40px;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 8px;
+    font-family: Helvetica;
+    border: none;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-appearance: none; 
+    -moz-appearance: none;
+    color: rgb(138, 21, 21);
+    background-color: whitesmoke;
 }
 .xButton
 {
