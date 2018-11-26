@@ -4,7 +4,7 @@ import * as HtmlScreenshotReporter from 'protractor-jasmine2-screenshot-reporter
 export let config: Config = {
     framework: 'jasmine',
     specs: ['./test.spec.js'],
-    seleniumServerJar: '../node_modules/protractor/node_modules/webdriver-manager/selenium/selenium-server-standalone-3.14.0.jar',
+    seleniumServerJar: '../node_modules/webdriver-manager/selenium/selenium-server-standalone-3.141.59.jar',
     defaultTimeoutInterval: 10000,
     onPrepare: () => {
       jasmine.getEnv().addReporter(
@@ -16,15 +16,15 @@ export let config: Config = {
       );
    },
    jasmineNodeOpts: {
-    showColors:true,
+    showColors: true,
     defaultTimeoutInterval: 10000,
   },
-  multiCapabilities:[
+  multiCapabilities: [
   //   {
   //   'browserName': 'firefox'
   // },
    {
-    'browserName': 'chrome'
+    browserName: 'chrome'
   }]
     // seleniumAddress: 'http://localhost:4444/wd/hub'
 };

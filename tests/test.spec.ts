@@ -3,7 +3,7 @@ import { browser } from 'protractor';
 
 describe('test', () => {
     const basePage = new BasePage();
-    browser.ignoreSynchronization = true;
+    browser.waitForAngularEnabled(false);
 
     const exampleTasks = [
         'pierwsze przykładowe zadanie',
@@ -12,6 +12,7 @@ describe('test', () => {
         'dodajmy czwarty task'
     ];
     const usedTasks = [1, 3];
+    // need to actually think of something less hardcoded than that, like a random tastks and then go from there
 
     it('check the heading', () => {
         basePage.openBrowser('http://localhost:8808');

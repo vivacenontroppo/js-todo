@@ -1,3 +1,5 @@
+/* tslint:disable: no-magic-numbers*/
+
 import { browser, element, by, protractor, promise } from 'protractor';
 import * as fs from 'fs';
 
@@ -12,10 +14,9 @@ export class BasePage {
 
     public openBrowser = (url: string): promise.Promise<void> => browser.get(url);
 
-    public pause = (sec: number): promise.Promise<void> => {
-      
-        return browser.driver.sleep(sec * 1000);
-    }
+    public pause = (sec: number): promise.Promise<void> =>
+
+        browser.driver.sleep(sec * 1000)
 
     public checkHeading = (title: string): promise.Promise<void> =>
         this.heading.getText().then(text => {
@@ -60,12 +61,6 @@ export class BasePage {
     public expextListToBeEmpty = (): promise.Promise<boolean> =>
     this.list.getText().then(text => expect(text).toBeFalsy());
 
-    private writeScreenShot = (data, filename) => {
-        const stream = fs.createWriteStream(filename);
-        stream.write(new Buffer (data, 'base64'));
-        stream.end();
-      };
-
     public takeScreenShot = (): promise.Promise<void> =>
         browser.takeScreenshot().then(png =>
             this.writeScreenShot(png, `./tests/screenshots/${this.currentDate}.png`));
@@ -74,4 +69,9 @@ export class BasePage {
 
     public refresh = (): promise.Promise<void> => browser.refresh();
 
+    private writeScreenShot = (data, filename) => {
+        const stream = fs.createWriteStream(filename);
+        stream.write(new Buffer (data, 'base64'));
+        stream.end();
+      };
 }
