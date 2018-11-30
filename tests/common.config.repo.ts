@@ -6,8 +6,8 @@ export class CommonConfig {
         'drugie przykładowe zadanie',
         'trzecie przykładowe zadanie',
         'dodajmy czwarty task',
-        'teraz mogę dodawać tasków ile właściwie zechcę!',
-        'i wszystkie powinny działać'
+        'dowolna ilość tasków może być tu wpisana',
+        'co jest bardzo fajne. dynamiczne, co nie?'
         ],
     };
     public readonly copy = {

@@ -16,6 +16,17 @@ export class BasePage {
 
     public openBrowser = (url: string): promise.Promise<void> => browser.get(url);
 
+    public randomize = (tasks: Array<string>) => {
+        const set = new Set()
+
+        tasks.forEach(_element => {
+            set.add((Math.floor((Math.random() * tasks.length) + 1)));
+        });
+
+        const compareNumbers = (a, b) => b - a
+        return Array.from(set).sort(compareNumbers)
+    }
+    
     public pause = (sec: number): promise.Promise<void> =>
 
         browser.driver.sleep(sec * 1000)

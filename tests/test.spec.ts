@@ -8,8 +8,8 @@ describe('test', () => {
     const basePage = new BasePage();
     const commonConfig = new CommonConfig
     const exampleTasks = commonConfig.testData.exampleTasks
-    const useTask: number[] = []
-    useTask.push(Math.floor((Math.random() * exampleTasks.length) + 1))
+    const useTask: number[] = basePage.randomize(exampleTasks);
+    console.log('Tasks used for check and delete test: ' + useTask)
 
     it('check the heading', () => {
         basePage.openBrowser('http://localhost:8808');
