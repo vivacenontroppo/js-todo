@@ -1,5 +1,8 @@
+/* tslint:disable: no-magic-numbers*/
+
 import { browser, element, by, protractor, promise } from 'protractor';
 import * as fs from 'fs';
+import { CommonConfig } from './common.config.repo'
 
 export class BasePage {
     public heading = element(by.xpath('//div[1]/h2[1]'));
@@ -9,13 +12,24 @@ export class BasePage {
     public allListElements = element.all(by.tagName('li'));
     public clearButton = element(by.xpath('//button[@id=\'clearButton\']'));
     public currentDate = new Date();
+    public commonConfig = new CommonConfig
 
     public openBrowser = (url: string): promise.Promise<void> => browser.get(url);
 
-    public pause = (sec: number): promise.Promise<void> => {
-      
-        return browser.driver.sleep(sec * 1000);
+    public randomize = (tasks: Array<string>) => {
+        const set = new Set()
+
+        tasks.forEach(_element => {
+            set.add((Math.floor((Math.random() * tasks.length) + 1)));
+        });
+
+        const compareNumbers = (a, b) => b - a
+        return Array.from(set).sort(compareNumbers)
     }
+    
+    public pause = (sec: number): promise.Promise<void> =>
+
+        browser.driver.sleep(sec * 1000)
 
     public checkHeading = (title: string): promise.Promise<void> =>
         this.heading.getText().then(text => {
@@ -30,7 +44,7 @@ export class BasePage {
         this.input.sendKeys(protractor.Key.RETURN);
 
     public checkTaskListByValue = (liIndex: number, liValue: string): promise.Promise<boolean> => {
-        const liElement = element(by.xpath(`//ul//li[${liIndex}]`));
+        const liElement = element(by.xpath(`//ul//li[${liIndex + 1}]`));
 
         return liElement.getText()
             .then(text => expect(text).toContain(liValue));
@@ -40,9 +54,10 @@ export class BasePage {
         tasksIndexes.forEach(taskIndex => {
             const liElement = element(by.xpath(`//ul[@id='ul']//li[${taskIndex}]`));
             liElement.getCssValue(cssProperty)
-            .then(property => expect(property).toContain(cssValue));
+                .then(property => expect(property).toContain(cssValue));
         }
-    ); };
+        );
+    };
 
     public checkTask = (tasksIndexes: number[]): void =>
         tasksIndexes.forEach(taskIndex =>
@@ -53,25 +68,22 @@ export class BasePage {
             element(by.xpath(`//ul[@id='ul']//li[${taskIndex}]//button`)).click());
 
     public expectLeftTasksNumber = (expected): promise.Promise<boolean> =>
-    this.allListElements.count().then(numberLeft => expect(numberLeft).toBe(expected))
+        this.allListElements.count().then(numberLeft => expect(numberLeft).toBe(expected))
 
     public clickClearAll = (): promise.Promise<void> => this.clearButton.click();
 
     public expextListToBeEmpty = (): promise.Promise<boolean> =>
-    this.list.getText().then(text => expect(text).toBeFalsy());
-
-    private writeScreenShot = (data, filename) => {
-        const stream = fs.createWriteStream(filename);
-        stream.write(new Buffer (data, 'base64'));
-        stream.end();
-      };
+        this.list.getText().then(text => expect(text).toBeFalsy());
 
     public takeScreenShot = (): promise.Promise<void> =>
         browser.takeScreenshot().then(png =>
             this.writeScreenShot(png, `./tests/screenshots/${this.currentDate}.png`));
 
-    public randomIndex = (max): number => Math.floor(Math.random() * Math.floor(max) + 1);
-
     public refresh = (): promise.Promise<void> => browser.refresh();
 
+    private writeScreenShot = (data, filename) => {
+        const stream = fs.createWriteStream(filename);
+        stream.write(new Buffer(data, 'base64'));
+        stream.end();
+    };
 }

@@ -1,21 +1,19 @@
 import { BasePage } from './basePage.po';
 import { browser } from 'protractor';
+import { CommonConfig } from './common.config.repo'
 
 describe('test', () => {
-    const basePage = new BasePage();
-    browser.ignoreSynchronization = true;
 
-    const exampleTasks = [
-        'pierwsze przykładowe zadanie',
-        'drugie przykładowe zadanie',
-        'trzecie przykładowe zadanie',
-        'dodajmy czwarty task'
-    ];
-    const usedTasks = [1, 3];
+    browser.waitForAngularEnabled(false);
+    const basePage = new BasePage();
+    const commonConfig = new CommonConfig
+    const exampleTasks = commonConfig.testData.exampleTasks
+    const useTask: number[] = basePage.randomize(exampleTasks);
+    console.log('Tasks used for check and delete test: ' + useTask)
 
     it('check the heading', () => {
         basePage.openBrowser('http://localhost:8808');
-        basePage.checkHeading('To do list:');
+        basePage.checkHeading(commonConfig.copy.header);
     });
 
     it('add some tasks by clicking enter', () => {
@@ -29,28 +27,28 @@ describe('test', () => {
     it('check tasks on list, refresh the page page and check again', () => {
 
         exampleTasks.forEach(task => {
-            basePage.checkTaskListByValue(exampleTasks.indexOf(task) + 1, task);
+            basePage.checkTaskListByValue(exampleTasks.indexOf(task), task);
         });
         basePage.refresh();
         exampleTasks.forEach(task => {
-            basePage.checkTaskListByValue(exampleTasks.indexOf(task) + 1, task);
+            basePage.checkTaskListByValue(exampleTasks.indexOf(task), task);
         });
     });
 
     it('check used tasks, check if checked, refresh and check again', () => {
 
-        basePage.checkTask(usedTasks);
-        basePage.checkTaskListByCss(usedTasks, 'text-decoration', 'line-through');
+        basePage.checkTask(useTask);
+        basePage.checkTaskListByCss(useTask, 'text-decoration', 'line-through');
         basePage.refresh();
-        basePage.checkTaskListByCss(usedTasks, 'text-decoration', 'line-through');
+        basePage.checkTaskListByCss(useTask, 'text-decoration', 'line-through');
     });
 
     it('should delete used tasks and check if gone, refresh and check again', () => {
 
-        basePage.deleteTask(usedTasks);
-        basePage.expectLeftTasksNumber(exampleTasks.length - usedTasks.length);
+        basePage.deleteTask(useTask);
+        basePage.expectLeftTasksNumber(exampleTasks.length - useTask.length);
         basePage.refresh();
-        basePage.expectLeftTasksNumber(exampleTasks.length - usedTasks.length);
+        basePage.expectLeftTasksNumber(exampleTasks.length - useTask.length);
     });
 
     it('should click delete all, check if gone, refresh and check again', () => {
@@ -68,11 +66,11 @@ describe('test', () => {
             basePage.clickEnter();
         });
         exampleTasks.forEach(task => {
-            basePage.checkTaskListByValue(exampleTasks.indexOf(task) + 1, task);
+            basePage.checkTaskListByValue(exampleTasks.indexOf(task), task);
         });
         basePage.refresh();
         exampleTasks.forEach(task => {
-            basePage.checkTaskListByValue(exampleTasks.indexOf(task) + 1, task);
+            basePage.checkTaskListByValue(exampleTasks.indexOf(task), task);
         });
     });
 });
