@@ -6,6 +6,7 @@
   "scripts": {
     "start": "localhost 'src' -p 8808",
     "wd": "webdriver-manager update && webdriver-manager start",
+    "wd-update": "webdriver-manager update",
     "test": "protractor tests/conf.js",
     "build": "babel src -d lib",
     "lint": "tslint --config tslint.json --project ./",
