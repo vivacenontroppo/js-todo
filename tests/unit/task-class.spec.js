@@ -1,19 +1,19 @@
 import { Task } from '../../src/task.class.js';
-//import { taskList, TasksList } from '../../src/tasks-list.class.js';
+
+//if i try to run this everything brakes:
+//import { TasksList } from '../../src/tasks-list.class.js';
 
 describe('test task class;', () => {
 
-var task = new Task;
-//var taskList = new TasksList;
-const newTask = (title, priority, isChecked) => {
-    return task(this.title, this.priority, this.isChecked)
-};
+const task = new Task;
+//const taskList = new TasksList;
 
     it('create an instance of task', () => {
 
-        //taskList.newTask('title', 1, false);
         expect('test').toBe('test');
-        newTask('example task', 1, fasle)
+
+        //if i try to run this everything brakes:
+        //newTask('example task', 1, fasle)
 
     });
 

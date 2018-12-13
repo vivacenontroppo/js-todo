@@ -23,13 +23,28 @@ module.exports = function(config) {
     exclude: [
     ],
 
-
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
       'tests/unit/*.spec.js': ['webpack'],
+      'tests/unit/**/*.spec.js': ['webpack']
     },
 
+    webpack: {
+			// you don't need to specify the entry option because
+			// karma watches the test entry points
+			// webpack watches dependencies
+
+      // ... remainder of webpack configuration (or import)
+      mode: 'production',
+    },
+
+    webpackMiddleware: {
+      // webpack-dev-middleware configuration
+      // i. e.
+      stats: 'errors-only'
+    },
+    
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
@@ -61,7 +76,7 @@ module.exports = function(config) {
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
-    singleRun: false,
+    singleRun: true,
 
     // Concurrency level
     // how many browser should be started simultaneous
