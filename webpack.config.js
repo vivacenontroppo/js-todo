@@ -17,6 +17,12 @@ module.exports = function(config) {
 
     webpackMiddleware: {
       noInfo: true
+    },
+      test: /\.(ts|tsx)?$/,
+    module: {
+      loader: 'ts-loader',
+      include: __dirname
     }
-  });
+    
+    });
 };

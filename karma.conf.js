@@ -16,7 +16,7 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      './tests/unit/*.spec.js',
+      'tests/unit/*.spec.ts',
     ],
 
 
@@ -27,14 +27,14 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      './src/*.js': ['webpack', 'sourcemap'],
-      './tests/unit/*.spec.js': ['webpack', 'sourcemap']
+      './src/*.ts': ['webpack'],
+      './tests/unit/*.spec.ts': ['webpack']
     },
 
     webpack: {
-			// you don't need to specify the entry option because
-			// karma watches the test entry points
-			// webpack watches dependencies
+            // you don't need to specify the entry option because
+            // karma watches the test entry points
+            // webpack watches dependencies
 
       // ... remainder of webpack configuration (or import)
       mode: 'production',
@@ -90,7 +90,8 @@ module.exports = function(config) {
       'karma-chrome-launcher',
       'karma-firefox-launcher',
       'karma-sourcemap-writer',
-      'karma-sourcemap-loader'
+      'karma-sourcemap-loader',
+      'awesome-typescript-loader'
     ],
 
   })

@@ -1,5 +1,6 @@
-import { Task } from '/task.class.js';
+'use strict';
 
+import { Task } from './task.class.js';
 export class TasksList {
 
     constructor() {

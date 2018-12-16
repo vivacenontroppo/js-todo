@@ -1,19 +1,30 @@
-import { Task } from '../../src/task.class.js';
-import { TasksList } from '../../src/tasks-list.class.js';
+import { Task } from '../../src/task.class';
+import { TasksList } from '../../src/tasks-list.class';
 
 describe('test task class;', () => {
 
-const task = new Task;
-
-//this variable declaration now brakes the compilation:
-const tasksList = new TasksList;
+    const task = function (title, priority, isChecked){
+        return new Task(title, priority, isChecked)
+     };
+    
+    //const tasksList = new TasksList(null, null, null, null, null, null, [])
 
     it('create an instance of task', () => {
 
-        expect('test').toBe('test');
 
-        //if i try to run this everything brakes i get 'create an instance of task FAILED':
-        //task('example task', 1, false);
+        const taskOne = task('title', 1, false);
+        expect(taskOne.title).toBe('title');
+        expect(taskOne.priority).toBe(1);
+        expect(taskOne.isChecked).toBe(false);
+        taskOne.toggleCheck();
+        expect(taskOne.isChecked).toBe(true);
+
+    });
+
+    it('change some parameters of the task', () => {
+
+        const taskTwo = task('string2', 4, true);
+        expect(taskTwo.title).toBe('string2');
 
     });
 
