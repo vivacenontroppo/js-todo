@@ -11,7 +11,7 @@ If you were not invited here, please leave.
 
 <li>npm build -> build ES5 files in /lib folder
   
-<li>npm run lint-fix -> use jslint with fix
+<li>npm run lint-fix -> use ts-lint with fix
 </ul>
 
 <h4>testing:</h4>
@@ -19,6 +19,8 @@ If you were not invited here, please leave.
 <li>tsc -> build js files from ts files
 
 <li>npm test -> perform e2e tests
+  
+<li>npm unit-test -> perform single-run unit test
   
 (no need to run webriver-manager, selenium-standalone is being used when test start)
 </ul>
