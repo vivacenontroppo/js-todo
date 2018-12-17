@@ -1,5 +1,7 @@
 tests/e2e/*.js
 tests/e2e/*.js.map
+tests/unit/*.js
+tests/unit/*.js.map
 tests/screenshots
 tests/.DS_Store
 .DS_Store
