@@ -6,7 +6,7 @@ export let config: Config = {
     specs: ['./test.spec.js'],
     seleniumServerJar: '../../node_modules/webdriver-manager/selenium/selenium-server-standalone-3.141.59.jar',
     defaultTimeoutInterval: 10000,
-    onPrepare: () => {
+    onPrepare: (): void => {
       jasmine.getEnv().addReporter(
         new HtmlScreenshotReporter({
           dest: `tests/screenshots/${new Date()}`,

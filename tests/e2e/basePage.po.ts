@@ -12,20 +12,20 @@ export class BasePage {
     public allListElements = element.all(by.tagName('li'));
     public clearButton = element(by.xpath('//button[@id=\'clearButton\']'));
     public currentDate = new Date();
-    public commonConfig = new CommonConfig;
+    public commonConfig = new CommonConfig();
 
     public openBrowser = (url: string): promise.Promise<void> => browser.get(url);
 
-    public randomize = (tasks: string[]) => {
+    public randomize = (tasks: string[]): number[] => {
         const set = new Set();
 
         tasks.forEach(_element => {
             set.add((Math.floor((Math.random() * tasks.length) + 1)));
         });
+        const compareNumbers = (a, b): number => b - a;
 
-        const compareNumbers = (a, b) => b - a;
         return Array.from(set).sort(compareNumbers);
-    }
+    };
 
     public pause = (sec: number): promise.Promise<void> =>
 
@@ -81,7 +81,7 @@ export class BasePage {
 
     public refresh = (): promise.Promise<void> => browser.refresh();
 
-    private writeScreenShot = (data, filename) => {
+    private writeScreenShot = (data, filename): void => {
         const stream = fs.createWriteStream(filename);
         stream.write(new Buffer(data, 'base64'));
         stream.end();

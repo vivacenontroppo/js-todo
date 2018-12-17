@@ -16,7 +16,7 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'tests/unit/*.spec.ts',
+      'tests/unit/*.spec.js',
     ],
 
 
@@ -27,8 +27,8 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      './src/*.ts': ['webpack'],
-      './tests/unit/*.spec.ts': ['webpack']
+      './src/*.js': ['webpack'],
+      './tests/unit/*.spec.js': ['webpack']
     },
 
     webpack: {
@@ -91,7 +91,6 @@ module.exports = function(config) {
       'karma-firefox-launcher',
       'karma-sourcemap-writer',
       'karma-sourcemap-loader',
-      'awesome-typescript-loader'
     ],
 
   })

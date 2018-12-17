@@ -1,3 +1,5 @@
+// tslint:disable:no-console
+
 import { BasePage } from './basePage.po';
 import { browser } from 'protractor';
 import { CommonConfig } from './common.config.repo';
@@ -6,10 +8,10 @@ describe('test', () => {
 
     browser.waitForAngularEnabled(false);
     const basePage = new BasePage();
-    const commonConfig = new CommonConfig;
+    const commonConfig = new CommonConfig();
     const exampleTasks = commonConfig.testData.exampleTasks;
     const useTask: number[] = basePage.randomize(exampleTasks);
-    console.log('Tasks used for check and delete test: ' + useTask);
+    console.log(`Tasks used for check and delete test: ${useTask}`);
 
     it('check the heading', () => {
         basePage.openBrowser('http://localhost:8808');

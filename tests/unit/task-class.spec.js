@@ -1,22 +1,35 @@
 "use strict";
+// tslint:disable: no-magic-numbers
 Object.defineProperty(exports, "__esModule", { value: true });
 var task_class_1 = require("../../src/task.class");
 describe('test task class;', function () {
+    var randomizePrirority = function () { return ((Math.floor((Math.random() * 5) + 1))); };
+    var randomizeBoolean = function () { return Math.random() >= 0.5; };
+    var randomizeString = function () { return Math.random().toString(36).substring(2, 10); };
+    var randomTitle = randomizeString();
+    var radnomPriority = randomizePrirority();
+    var randomBoolean = randomizeBoolean();
     var task = function (title, priority, isChecked) {
         return new task_class_1.Task(title, priority, isChecked);
     };
-    //const tasksList = new TasksList(null, null, null, null, null, null, [])
+    var taskOne = task(randomTitle, radnomPriority, randomBoolean);
     it('create an instance of task', function () {
-        var taskOne = task('title', 1, false);
-        expect(taskOne.title).toBe('title');
-        expect(taskOne.priority).toBe(1);
-        expect(taskOne.isChecked).toBe(false);
-        taskOne.toggleCheck();
-        expect(taskOne.isChecked).toBe(true);
+        expect(taskOne.title).toBe(randomTitle);
+        expect(taskOne.priority).toBe(radnomPriority);
+        expect(taskOne.isChecked).toBe(randomBoolean);
     });
-    it('change some parameters of the task', function () {
-        var taskTwo = task('string2', 4, true);
-        expect(taskTwo.title).toBe('string2');
+    it('check if values have proper types', function () {
+        expect(typeof taskOne.title === 'string').toBeTruthy();
+        expect(typeof taskOne.priority === 'number').toBeTruthy();
+        expect(typeof taskOne.isChecked === 'boolean').toBeTruthy();
+    });
+    it('change some parameters of it', function () {
+        taskOne.title = 'randomizeString();';
+        taskOne.priority = 1;
+        taskOne.toggleCheck();
+        expect(taskOne.title).toBe('randomizeString();');
+        expect(taskOne.priority).toBe(1);
+        expect(taskOne.isChecked).toBe(!randomBoolean);
     });
 });
 //# sourceMappingURL=task-class.spec.js.map
