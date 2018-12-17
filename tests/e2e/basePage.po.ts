@@ -2,7 +2,7 @@
 
 import { browser, element, by, protractor, promise } from 'protractor';
 import * as fs from 'fs';
-import { CommonConfig } from './common.config.repo'
+import { CommonConfig } from './common.config.repo';
 
 export class BasePage {
     public heading = element(by.xpath('//div[1]/h2[1]'));
@@ -12,21 +12,21 @@ export class BasePage {
     public allListElements = element.all(by.tagName('li'));
     public clearButton = element(by.xpath('//button[@id=\'clearButton\']'));
     public currentDate = new Date();
-    public commonConfig = new CommonConfig
+    public commonConfig = new CommonConfig();
 
     public openBrowser = (url: string): promise.Promise<void> => browser.get(url);
 
-    public randomize = (tasks: Array<string>) => {
-        const set = new Set()
+    public randomize = (tasks: string[]): number[] => {
+        const set = new Set();
 
         tasks.forEach(_element => {
             set.add((Math.floor((Math.random() * tasks.length) + 1)));
         });
+        const compareNumbers = (a, b): number => b - a;
 
-        const compareNumbers = (a, b) => b - a
-        return Array.from(set).sort(compareNumbers)
-    }
-    
+        return Array.from(set).sort(compareNumbers);
+    };
+
     public pause = (sec: number): promise.Promise<void> =>
 
         browser.driver.sleep(sec * 1000)
@@ -81,7 +81,7 @@ export class BasePage {
 
     public refresh = (): promise.Promise<void> => browser.refresh();
 
-    private writeScreenShot = (data, filename) => {
+    private writeScreenShot = (data, filename): void => {
         const stream = fs.createWriteStream(filename);
         stream.write(new Buffer(data, 'base64'));
         stream.end();

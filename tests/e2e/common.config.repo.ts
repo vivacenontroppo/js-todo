@@ -12,5 +12,5 @@ export class CommonConfig {
     };
     public readonly copy = {
         header: 'To do list:'
-    }
-};
+    };
+}

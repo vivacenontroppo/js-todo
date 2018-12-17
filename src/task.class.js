@@ -1,3 +1,5 @@
+'use strict';
+
 export class Task {
     constructor(title, priority, isChecked) {
         this.title = title;
@@ -5,6 +7,6 @@ export class Task {
         this.isChecked = isChecked
     }
     toggleCheck() {
-        this.isChecked = !this.isChecked
+        this.isChecked = !this.isChecked;
     }
 };
