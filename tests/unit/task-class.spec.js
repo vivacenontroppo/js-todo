@@ -12,18 +12,20 @@ describe('test task class;', function () {
     var task = function (title, priority, isChecked) {
         return new task_class_1.Task(title, priority, isChecked);
     };
-    var taskOne = task(randomTitle, radnomPriority, randomBoolean);
     it('create an instance of task', function () {
+        var taskOne = task(randomTitle, radnomPriority, randomBoolean);
         expect(taskOne.title).toBe(randomTitle);
         expect(taskOne.priority).toBe(radnomPriority);
         expect(taskOne.isChecked).toBe(randomBoolean);
     });
     it('check if values have proper types', function () {
+        var taskOne = task(randomTitle, radnomPriority, randomBoolean);
         expect(typeof taskOne.title === 'string').toBeTruthy();
         expect(typeof taskOne.priority === 'number').toBeTruthy();
         expect(typeof taskOne.isChecked === 'boolean').toBeTruthy();
     });
     it('change some parameters of it', function () {
+        var taskOne = task(randomTitle, radnomPriority, randomBoolean);
         taskOne.title = 'randomizeString();';
         taskOne.priority = 1;
         taskOne.toggleCheck();

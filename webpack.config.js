@@ -11,6 +11,12 @@ module.exports = function(config) {
     browsers: ['Chrome', 'Firefox'],
     singleRun: false,
 
+    entry: './src/index.html',
+      output: {
+    filename: 'main.js',
+    path: path.resolve(__dirname, 'dist')
+    },
+
     files: [
       './src/*.js',
       './tests/unit/*.js'],

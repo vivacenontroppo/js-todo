@@ -13,10 +13,10 @@ describe('test task class;', () => {
     const randomBoolean = randomizeBoolean();
     const task = (title: string, priority: priorityRange, isChecked: boolean): Task =>
         new Task(title, priority, isChecked);
-    const taskOne = task(randomTitle, radnomPriority, randomBoolean);
 
     it('create an instance of task', () => {
 
+        const taskOne = task(randomTitle, radnomPriority, randomBoolean);
         expect(taskOne.title).toBe(randomTitle);
         expect(taskOne.priority).toBe(radnomPriority);
         expect(taskOne.isChecked).toBe(randomBoolean);
@@ -25,6 +25,7 @@ describe('test task class;', () => {
 
     it('check if values have proper types', () => {
 
+        const taskOne = task(randomTitle, radnomPriority, randomBoolean);
         expect(typeof taskOne.title === 'string').toBeTruthy();
         expect(typeof taskOne.priority === 'number').toBeTruthy();
         expect(typeof taskOne.isChecked === 'boolean').toBeTruthy();
@@ -33,6 +34,7 @@ describe('test task class;', () => {
 
     it('change some parameters of it', () => {
 
+        const taskOne = task(randomTitle, radnomPriority, randomBoolean);
         taskOne.title = 'randomizeString();';
         taskOne.priority = 1;
         taskOne.toggleCheck();
