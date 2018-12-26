@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = function(config) {
+module.exports = function (config) {
   config.set({
     basePath: '',
     frameworks: ['jasmine'],
@@ -11,12 +11,17 @@ module.exports = function(config) {
     browsers: ['Chrome', 'Firefox'],
     singleRun: false,
 
+    entry: './src/main.js',
+    output: {
+      path: __dirname + '/dist',
+      filename: 'bundle.js'
+    },
+
     files: [
-      './src/*.js',
       './tests/unit/*.js'],
 
     webpackMiddleware: {
       noInfo: true
-    },  
+    },
   });
 };
