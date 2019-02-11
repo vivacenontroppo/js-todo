@@ -14,7 +14,7 @@ describe('test', () => {
     console.log(`Tasks used for check and delete test: ${useTask}`);
 
     it('check the heading', () => {
-        basePage.openBrowser('http://localhost:8808');
+        basePage.openBrowser(browser.baseUrl);
         basePage.checkHeading(commonConfig.copy.header);
     });
 

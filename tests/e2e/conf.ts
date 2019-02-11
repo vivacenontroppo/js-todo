@@ -1,4 +1,4 @@
-import { Config } from 'protractor';
+import { Config, browser } from 'protractor';
 import * as HtmlScreenshotReporter from 'protractor-jasmine2-screenshot-reporter';
 
 export let config: Config = {
@@ -14,6 +14,7 @@ export let config: Config = {
           captureOnlyFailedSpecs: true
         })
       );
+      exports.config.baseUrl = browser.params.baseUrl;
    },
    jasmineNodeOpts: {
     showColors: true,
