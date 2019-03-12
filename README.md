@@ -9,7 +9,7 @@ If you were not invited here, please leave.
 
 <li>npm start -> for localhost:8880
 
-<li>npm build -> build ES5 files in /lib folder
+<li>npm build -> build ES5 files in /lib folder (no need for that)
   
 <li>npm run lint-fix -> use ts-lint with fix
 </ul>
@@ -18,9 +18,11 @@ If you were not invited here, please leave.
 <ul>
 <li>tsc -> build js files from ts files
 
-<li>npm test -> perform e2e tests
+<li>npm run test-local -> localhost test
+<li>npm run test-online -> online test (can be outdated or not working, sorry)
   
 <li>npm unit-test -> perform single-run unit test
   
 (no need to run webriver-manager, selenium-standalone is being used when test start)
+* notice you will get HTML report with screenshot in foder with date for every failed test
 </ul>
