@@ -27,9 +27,7 @@ export class BasePage {
         return Array.from(set).sort(compareNumbers);
     };
 
-    public pause = (sec: number): promise.Promise<void> =>
-
-        browser.driver.sleep(sec * 1000)
+    public pause = (sec: number): promise.Promise<void> => browser.driver.sleep(sec * 1000)
 
     public checkHeading = (title: string): promise.Promise<void> =>
         this.heading.getText().then(text => {
@@ -40,8 +38,7 @@ export class BasePage {
 
     public clickAdd = (): promise.Promise<void> => this.addButton.click();
 
-    public clickEnter = (): promise.Promise<void> =>
-        this.input.sendKeys(protractor.Key.RETURN);
+    public clickEnter = (): promise.Promise<void> => this.input.sendKeys(protractor.Key.RETURN);
 
     public checkTaskListByValue = (liIndex: number, liValue: string): promise.Promise<boolean> => {
         const liElement = element(by.xpath(`//ul//li[${liIndex + 1}]`));
